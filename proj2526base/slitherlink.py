@@ -42,6 +42,8 @@ class SlitherlinkState:
 class Board:
     """Representação interna de um tabuleiro de Slitherlink."""
 
+    _lines = []
+
     def adjacent_cell(self, cell:tuple) -> list:
         """Devolve uma lista das células que fazem
         fronteira com a célula enviada no argumento"""
@@ -71,7 +73,10 @@ class Board:
             > line = stdin.readline().split()
         """
         # TODO
-        pass
+        line = stdin.readline().split()
+        while line != [] and line != [""]:
+            Board._lines.append(line)
+            line = stdin.readline().split()
 
     # TODO: outros metodos da classe
 
@@ -118,7 +123,9 @@ if __name__ == "__main__":
     # Usar uma técnica de procura para resolver a instância,
     # Retirar a solução a partir do nó resultante,
     # Imprimir para o standard output no formato indicado.
-    pass
+    board = Board()
+    board.parse_instance()
+    print(board._lines)
 
 
 
