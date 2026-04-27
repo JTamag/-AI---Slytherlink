@@ -45,20 +45,28 @@ class Board:
     _lines = []
 
     def adjacent_cell(self, cell:tuple) -> list:
-        """Devolve uma lista das células que fazem
-        fronteira com a célula enviada no argumento"""
-        #TODO
-        pass
+        row, column = cell
+        adjacent_cells = []
+        if row > 0:
+            adjacent_cells.append((row-1, column))
+        if row < len(self._lines)-1:
+            adjacent_cells.append((row+1, column))
+        if column > 0:
+            adjacent_cells.append((row, column-1))
+        if column < len(self._lines[0])-1:
+            adjacent_cells.append((row, column+1))
+        return adjacent_cells
+
 
     def get_cell_edges(self, row:int, column:int) -> list:
-        """Devolve os arestas da célula enviada no argumento"""
-        #TODO
-        pass
+        return [ ('h',row, column), ('h',row+1, column), ('v',row, column), ('v',row, column+1) ]
+
 
     def get_active_edges(self, row:int, column:int) -> list:
         """Devolve o número de arestas ativas"""
         #TODO
         pass
+        ## TODO: Definir como vai funcionar a nelka para relatar o estado atual das arestas
 
 
     @staticmethod
