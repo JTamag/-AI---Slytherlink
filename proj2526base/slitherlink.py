@@ -42,7 +42,21 @@ class SlitherlinkState:
 class Board:
     """Representação interna de um tabuleiro de Slitherlink."""
 
-    _lines = []
+    def __init__(self,lines):
+        self._lines = lines
+
+        self.rows = len(lines)
+        self.cols = len(lines[0])
+
+        self.edges = {}
+
+        for row in range(self.rows+1):
+            for col in range(self.cols+1):
+                if row < self.rows:
+                    self.edges[('h', row, col)] = False
+                if col < self.cols:
+                    self.edges[('v', row, col)] = False
+        
 
     def adjacent_cell(self, cell:tuple) -> list:
         row, column = cell
@@ -81,10 +95,14 @@ class Board:
             > line = stdin.readline().split()
         """
         # TODO
+        lines = []
         line = stdin.readline().split()
         while line != [] and line != [""]:
-            Board._lines.append(line)
+            lines.append(line)
             line = stdin.readline().split()
+        return Board(lines)
+
+
 
     # TODO: outros metodos da classe
 
@@ -131,8 +149,7 @@ if __name__ == "__main__":
     # Usar uma técnica de procura para resolver a instância,
     # Retirar a solução a partir do nó resultante,
     # Imprimir para o standard output no formato indicado.
-    board = Board()
-    board.parse_instance()
+    board = Board.parse_instance()
     print(board._lines)
 
 
