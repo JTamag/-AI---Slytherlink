@@ -1,0 +1,7 @@
+*
+!.gitignore
+!**.md
+!**.py
+!**.pdf
+!public-tests.zip
+
